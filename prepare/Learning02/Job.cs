@@ -9,12 +9,10 @@ public class Job
     {
 
     }
-    public void showJob()
+    public void Display()
     {
-        Console.WriteLine($"{_Company}");
-        Console.WriteLine($"{_jobTitle}");
-        Console.WriteLine($"{_startYear}");
-        Console.WriteLine($"{_endYear}");
+        Console.WriteLine($"{_jobTitle} ({_Company}) {_startYear} - {_endYear} ");
+
     }
 
 
