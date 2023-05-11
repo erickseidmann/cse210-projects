@@ -13,354 +13,354 @@ namespace JournalProgram
 
 {
 
-    public class Entry
+  public class Entry
 
-    {
+  {
 
-        public string Date { get; set; }
+    public string Date { get; set; }
 
-        public string Prompt { get; set; }
+    public string Prompt { get; set; }
 
-        public string Response { get; set; }
+    public string Response { get; set; }
 
 
 
 
-        public Entry(string date, string prompt, string response)
+    public Entry(string date, string prompt, string response)
 
-        {
+    {
 
-            Date = date;
+      Date = date;
 
-            Prompt = prompt;
+      Prompt = prompt;
 
-            Response = response;
+      Response = response;
 
-        }
+    }
 
 
 
 
-        public override string ToString()
+    public override string ToString()
 
-        {
+    {
 
-            return $"Date: {Date}\nPrompt: {Prompt}\nResponse: {Response}\n";
+      return $"Date: {Date}\nPrompt: {Prompt}\nResponse: {Response}\n";
 
-        }
+    }
 
-    }
+  }
 
 
 
 
-    public class Journal
+  public class Journal
 
-    {
+  {
 
-        private List<Entry> entries = new List<Entry>();
+    private List<Entry> entries = new List<Entry>();
 
 
 
 
-        public void AddEntry(Entry entry)
+    public void AddEntry(Entry entry)
 
-        {
+    {
 
-            entries.Add(entry);
+      entries.Add(entry);
 
-        }
+    }
 
 
 
 
-        public void DisplayEntries()
+    public void DisplayEntries()
 
-        {
+    {
 
-            foreach (var entry in entries)
+      foreach (var entry in entries)
 
-            {
+      {
 
-                Console.WriteLine(entry);
+        Console.WriteLine(entry);
 
-            }
+      }
 
-        }
+    }
 
 
 
 
-        public void SaveToFile(string filename)
+    public void SaveToFile(string filename)
 
-        {
+    {
 
-            using StreamWriter file = new StreamWriter(filename);
+      using StreamWriter file = new StreamWriter(filename);
 
-            foreach (var entry in entries)
+      foreach (var entry in entries)
 
-            {
+      {
 
-                file.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
+        file.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
 
-            }
+      }
 
-        }
+    }
 
 
 
 
-        public void LoadFromFile(string filename)
+    public void LoadFromFile(string filename)
 
-        {
+    {
 
-            if (File.Exists(filename))
+      if (File.Exists(filename))
 
-            {
+      {
 
-                entries.Clear();
+        entries.Clear();
 
-                using StreamReader file = new StreamReader(filename);
+        using StreamReader file = new StreamReader(filename);
 
-                string line;
+        string line;
 
-                while ((line = file.ReadLine()) != null)
+        while ((line = file.ReadLine()) != null)
 
-                {
+        {
 
-                    string[] parts = line.Split('|');
+          string[] parts = line.Split('|');
 
-                    if (parts.Length == 3)
+          if (parts.Length == 3)
 
-                    {
+          {
 
-                        entries.Add(new Entry(parts[0], parts[1], parts[2]));
+            entries.Add(new Entry(parts[0], parts[1], parts[2]));
 
-                    }
+          }
 
-                }
+        }
 
-            }
+      }
 
-            else
+      else
 
-            {
+      {
 
-                Console.WriteLine("File not found!");
+        Console.WriteLine("File not found!");
 
-            }
+      }
 
-        }
+    }
 
-    }
+  }
 
 
 
 
-    class Program
+  class Program
 
-    {
+  {
 
-        private static string[] prompts = new string[]
+    private static string[] prompts = new string[]
 
-        {
+    {
 
-            "Who was the most interesting person I interacted with today?",
+      "Who was the most interesting person I interacted with today?",
 
-            "What was the best part of my day?",
+      "What was the best part of my day?",
 
-            "How did I see the hand of the Lord in my life today?",
+      "How did I see the hand of the Lord in my life today?",
 
-            "What was the strongest emotion I felt today?",
+      "What was the strongest emotion I felt today?",
 
-            "If I had one thing I could do over today, what would it be?"
+      "If I had one thing I could do over today, what would it be?"
 
-        };
+    };
 
 
 
 
-        static void Main(string[] args)
+    static void Main(string[] args)
 
-        {
+    {
 
-            Journal journal = new Journal();
+      Journal journal = new Journal();
 
-            bool running = true;
+      bool running = true;
 
 
 
 
-            while (running)
+      while (running)
 
-            {
+      {
 
-                Console.WriteLine("1. Write a new entry");
+        Console.WriteLine("1. Write a new entry");
 
-                Console.WriteLine("2. Display the journal");
+        Console.WriteLine("2. Display the journal");
 
-                Console.WriteLine("3. Save the journal to a file");
+        Console.WriteLine("3. Save the journal to a file");
 
-                Console.WriteLine("4. Load the journal from a file");
+        Console.WriteLine("4. Load the journal from a file");
 
-                Console.WriteLine("5. Exit");
+        Console.WriteLine("5. Exit");
 
-                Console.Write("Select an option: ");
+        Console.Write("Select an option: ");
 
 
 
 
-                if (int.TryParse(Console.ReadLine(), out int option))
+        if (int.TryParse(Console.ReadLine(), out int option))
 
-                {
+        {
 
-                    switch (option)
+          switch (option)
 
-                    {
+          {
 
-                        case 1:
+            case 1:
 
-                            WriteNewEntry(journal);
+              WriteNewEntry(journal);
 
-                            break;
+              break;
 
-                        case 2:
+            case 2:
 
-                            journal.DisplayEntries();
+              journal.DisplayEntries();
 
-                            break;
+              break;
 
-                        case 3:
+            case 3:
 
-                            SaveJournal(journal);
+              SaveJournal(journal);
 
-                            break;
+              break;
 
-                        case 4:
+            case 4:
 
-                            LoadJournal(journal);
+              LoadJournal(journal);
 
-                            break;
+              break;
 
-                        case 5:
+            case 5:
 
-                            running = false;
+              running = false;
 
-                            break;
+              break;
 
-                        default:
+            default:
 
-                            Console.WriteLine("Invalid option.");
+              Console.WriteLine("Invalid option.");
 
-                            break;
+              break;
 
-                    }
+          }
 
-                }
+        }
 
-            }
+      }
 
-        }
+    }
 
 
 
 
-        private static void WriteNewEntry(Journal journal)
+    private static void WriteNewEntry(Journal journal)
 
-        {
+    {
 
-            Random random = new Random();
+      Random random = new Random();
 
-            int index = random.Next(prompts.Length);
+      int index = random.Next(prompts.Length);
 
-            string prompt = prompts[index];
+      string prompt = prompts[index];
 
 
 
 
-            Console.WriteLine($"Prompt: {prompt}");
+      Console.WriteLine($"Prompt: {prompt}");
 
-            Console.Write("Your response: ");
+      Console.Write("Your response: ");
 
-            string response = Console.ReadLine();
+      string response = Console.ReadLine();
 
 
 
 
-            string date = DateTime.Now.ToString("yyyy-MM-dd");
+      string date = DateTime.Now.ToString("yyyy-MM-dd");
 
-            journal.AddEntry(new Entry(date, prompt, response));
+      journal.AddEntry(new Entry(date, prompt, response));
 
-        }
+    }
 
 
 
 
-        private static void SaveJournal(Journal journal)
+    private static void SaveJournal(Journal journal)
 
-        {
+    {
 
-            Console.Write("Enter filename to save: ");
+      Console.Write("Enter filename to save: ");
 
-            string filename = Console.ReadLine();
+      string filename = Console.ReadLine();
 
 
 
 
-            if (!string.IsNullOrWhiteSpace(filename))
+      if (!string.IsNullOrWhiteSpace(filename))
 
-            {
+      {
 
-                journal.SaveToFile(filename);
+        journal.SaveToFile(filename);
 
-                Console.WriteLine("Journal saved successfully!");
+        Console.WriteLine("Journal saved successfully!");
 
-            }
+      }
 
-            else
+      else
 
-            {
+      {
 
-                Console.WriteLine("Invalid filename!");
+        Console.WriteLine("Invalid filename!");
 
-            }
+      }
 
-        }
+    }
 
 
 
 
-        private static void LoadJournal(Journal journal)
+    private static void LoadJournal(Journal journal)
 
-        {
+    {
 
-            Console.Write("Enter filename to load: ");
+      Console.Write("Enter filename to load: ");
 
-            string filename = Console.ReadLine();
+      string filename = Console.ReadLine();
 
 
 
 
-            if (!string.IsNullOrWhiteSpace(filename))
+      if (!string.IsNullOrWhiteSpace(filename))
 
-            {
+      {
 
-                journal.LoadFromFile(filename);
+        journal.LoadFromFile(filename);
 
-                Console.WriteLine("Journal loaded successfully!");
+        Console.WriteLine("Journal loaded successfully!");
 
-            }
+      }
 
-            else
+      else
 
-            {
+      {
 
-                Console.WriteLine("Invalid filename!");
+        Console.WriteLine("Invalid filename!");
 
-            }
+      }
 
-        }
+    }
 
-    }
+  }
 
 }
