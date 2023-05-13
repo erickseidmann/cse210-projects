@@ -166,14 +166,16 @@ namespace JournalProgram
     {
 
       "Who was the most interesting person I interacted with today?",
-
       "What was the best part of my day?",
-
       "How did I see the hand of the Lord in my life today?",
-
       "What was the strongest emotion I felt today?",
-
-      "If I had one thing I could do over today, what would it be?"
+      "If I had one thing I could do over today, what would it be?",
+      "What was the most challenging situation I faced today?",
+      "What was the most valuable thing I learned today?",
+      "What was the most exciting thing I did today?",
+      "What was the most important thing I accomplished today?",
+      "What am I most grateful for today?",
+      "What is one thing I can do to make tomorrow better than today?"
 
     };
 
@@ -247,11 +249,8 @@ namespace JournalProgram
               running = false;
 
               break;
-
             default:
-
               Console.WriteLine("Invalid option.");
-
               break;
 
           }
@@ -286,7 +285,7 @@ namespace JournalProgram
 
 
 
-
+      
       string date = DateTime.Now.ToString("yyyy-MM-dd");
 
       journal.AddEntry(new Entry(date, prompt, response));
