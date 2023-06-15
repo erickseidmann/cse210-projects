@@ -6,6 +6,14 @@ class Program
     {
         List<Shape> shapes = new List<Shape>();
         Square s1 = new Square("Green", 6);
+
+        Rectangle s2 = new Rectangle("black", 4, 5);
+        shapes.Add(s2);
+
+        Circle s3 = new Circle("Pink", 16);
+        shapes.Add(s3);
+
+
         shapes.Add(s1);
         foreach (Shape s in shapes)
         {
