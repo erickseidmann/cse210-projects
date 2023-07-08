@@ -1,9 +1,13 @@
 using System;
-
-class Program
+namespace DiaryApp
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello FinalProject World!");
+        static void Main(string[] args)
+        {
+            Diary diary = new Diary();
+            diary.LoadPreviousEntries("diario.csv");
+            diary.Start();
+        }
     }
 }
